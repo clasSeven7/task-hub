@@ -1,6 +1,6 @@
-from app.manager import Manager
+from manager import Manager
 
-manager = Manager("tasks.json")
+manager = Manager("../tasks.json")
 
 while True:
     action = input("\nEscolha uma ação:\n"
