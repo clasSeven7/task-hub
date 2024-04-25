@@ -1,5 +1,3 @@
-
-
 class Task:
     def __init__(self, description, priority, status):
         self.description = description

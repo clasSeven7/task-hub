@@ -1,6 +1,8 @@
 import json
-from task_manager import Task
-from queue import Queue
+
+from .queue import Queue
+from .task_manager import Task
+
 
 class Manager:
     def __init__(self, name_file_json):
@@ -14,7 +16,8 @@ class Manager:
                 data_json = json.load(file)
                 for task_json in data_json:
                     task = Task.from_json(task_json)
-                    self.tasks.enqueue(task)  # Adicionar a tarefa à fila usando enqueue
+                    # Adicionar a tarefa à fila usando enqueue
+                    self.tasks.enqueue(task)
             if not self.tasks.is_empty():
                 print(f"{self.tasks.size} tarefas carregadas com sucesso.")
         except FileNotFoundError:
@@ -22,15 +25,18 @@ class Manager:
 
     def save_tasks(self):
         data_json = []
-        temp_queue = Queue()  # Criar uma fila temporária para armazenar as tarefas enquanto salvamos
+        # Criar uma fila temporária para armazenar as tarefas enquanto salvamos
+        temp_queue = Queue()
 
         while not self.tasks.is_empty():
             task = self.tasks.dequeue()  # Remover tarefa da fila principal
-            data_json.append(task.to_json())  # Adicionar tarefa ao arquivo JSON
+            # Adicionar tarefa ao arquivo JSON
+            data_json.append(task.to_json())
             temp_queue.enqueue(task)  # Adicionar tarefa à fila temporária
 
         while not temp_queue.is_empty():
-            self.tasks.enqueue(temp_queue.dequeue())  # Restaurar tarefas na fila principal
+            # Restaurar tarefas na fila principal
+            self.tasks.enqueue(temp_queue.dequeue())
 
         with open(self.name_file_json, "w") as file:
             json.dump(data_json, file)
@@ -45,24 +51,27 @@ class Manager:
             print("Índice inválido.")
             return
 
-        temp_queue = Queue()  # Criar uma fila temporária para armazenar as tarefas enquanto removemos
+        # Criar uma fila temporária para armazenar as tarefas enquanto removemos
+        temp_queue = Queue()
         current_index = 0
 
         while not self.tasks.is_empty():
             task = self.tasks.dequeue()  # Remover tarefa da fila principal
             if current_index != indice:
-                temp_queue.enqueue(task)  # Se não for o índice da tarefa a ser removida, adicioná-la à fila temporária
+                # Se não for o índice da tarefa a ser removida, adicioná-la à fila temporária
+                temp_queue.enqueue(task)
             current_index += 1
 
         while not temp_queue.is_empty():
-            self.tasks.enqueue(temp_queue.dequeue())  # Restaurar tarefas na fila principal
+            # Restaurar tarefas na fila principal
+            self.tasks.enqueue(temp_queue.dequeue())
 
         self.save_tasks()
         print("Tarefa removida com sucesso!")
 
-
     def edit_task(self, indice):
-        temp_queue = Queue()  # Criar uma fila temporária para armazenar as tarefas enquanto editamos
+        # Criar uma fila temporária para armazenar as tarefas enquanto editamos
+        temp_queue = Queue()
 
         while not self.tasks.is_empty():
             task = self.tasks.dequeue()  # Remover tarefa da fila principal
@@ -77,14 +86,16 @@ class Manager:
             indice -= 1
 
         while not temp_queue.is_empty():
-            self.tasks.enqueue(temp_queue.dequeue())  # Restaurar tarefas na fila principal
+            # Restaurar tarefas na fila principal
+            self.tasks.enqueue(temp_queue.dequeue())
 
         self.save_tasks()
 
     def get_tasks(self):
         if not self.tasks.is_empty():
             print("\nTarefas:")
-            temp_queue = Queue()  # Criar uma fila temporária para armazenar as tarefas enquanto exibimos
+            # Criar uma fila temporária para armazenar as tarefas enquanto exibimos
+            temp_queue = Queue()
             current_index = 0
 
             while not self.tasks.is_empty():
@@ -95,6 +106,7 @@ class Manager:
                 current_index += 1
 
             while not temp_queue.is_empty():
-                self.tasks.enqueue(temp_queue.dequeue())  # Restaurar tarefas na fila principal
+                # Restaurar tarefas na fila principal
+                self.tasks.enqueue(temp_queue.dequeue())
         else:
             print("Não há tarefas cadastradas.")

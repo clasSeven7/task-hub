@@ -1,0 +1,17 @@
+[
+  {
+    "descricao": "charles python 1",
+    "prioridade": "alta",
+    "status": "em andamento"
+  },
+  {
+    "descricao": "neto fazer atividade",
+    "prioridade": "alta",
+    "status": "pendente"
+  },
+  {
+    "descricao": "saulo fazer uma atividade",
+    "prioridade": "alta",
+    "status": "pendente"
+  }
+]

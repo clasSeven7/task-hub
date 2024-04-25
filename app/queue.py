@@ -1,7 +1,3 @@
-# queue.py
-
-from task_manager import Task
-
 class Queue:
     def __init__(self):
         self.head = None
@@ -28,4 +24,3 @@ class Queue:
 
     def is_empty(self):
         return self.head is None
-
