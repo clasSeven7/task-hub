@@ -1,1 +1,4 @@
-[{"descricao": "java oo", "prioridade": "alta", "status": "em andamento"}, {"descricao": "python oo", "prioridade": "baixa", "status": "pendente"}, {"descricao": "ir no dentista", "prioridade": "alta", "status": "em andamento"}]
+[
+  { "descricao": "saulo", "prioridade": "alta", "status": "pendente" },
+  { "descricao": "charlenier", "prioridade": "alta", "status": "em andamento" }
+]
