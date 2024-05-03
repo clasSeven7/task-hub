@@ -1,52 +1,60 @@
+import PySimpleGUI as sg
+
 from app.manager import Manager
 
 manager = Manager("./database/tasks.json")
 
+sg.theme('reddit')
+
+layout = [
+    [sg.Text("Escolha uma ação:")],
+    [sg.Button("Adicionar Tarefa")],
+    [sg.Button("Remover Tarefa")],
+    [sg.Button("Editar Tarefa")],
+    [sg.Button("Mostrar Tarefas")],
+    [sg.Button("Sair")]
+]
+
+window = sg.Window("Gerenciador de Tarefas", layout)
+
 while True:
-    action = input("\nEscolha uma ação:\n"
-                   "1. Adicionar Tarefa\n"
-                   "2. Remover Tarefa\n"
-                   "3. Editar Tarefa\n"
-                   "4. Mostrar Tarefas\n"
-                   "5. Sair\n"
-                   "Opção: ")
+    event, values = window.read()
 
-    if action == "1":
-        description = input("Descrição da tarefa: ")
-        priority = input("Prioridade (alta, média, baixa): ")
-        status = input("Status (pendente, em andamento, concluída): ")
-        manager.add_task(description, priority, status)
-        manager.save_tasks()
-        print("Tarefa adicionada com sucesso!")
-
-    elif action == "2":
-        if manager.tasks:
-            manager.get_tasks()
-            indice = int(input("Índice da tarefa para remover: "))
-            manager.remove_task(indice)
-            manager.save_tasks()
-            print("Tarefa removida com sucesso!")
-        else:
-            print("Não há tarefas para remover.")
-
-    elif action == "3":
-        if manager.tasks:
-            manager.get_tasks()
-            indice = int(input("Índice da tarefa para editar: "))
-            manager.edit_task(indice)
-            manager.save_tasks()
-
-            print("Tarefa editada com sucesso!")
-        else:
-            print("Não há tarefas para editar.")
-
-    elif action == "4":
-        manager.get_tasks()
-
-    elif action == "5":
+    if event == sg.WIN_CLOSED or event == "Sair":
         break
 
-    else:
-        print("Opção inválida. Tente novamente.")
+    if event == "Adicionar Tarefa":
+        description = sg.popup_get_text("Descrição da tarefa:")
+        priority = sg.popup_get_text("Prioridade (alta, média, baixa):")
+        status = sg.popup_get_text(
+            "Status (pendente, em andamento, concluída):")
+        manager.add_task(description, priority, status)
+        manager.save_tasks()
+        sg.popup("Tarefa adicionada com sucesso!")
 
-print("\nSaindo do gerenciador de tarefas.")
+    if event == "Remover Tarefa":
+        if manager.tasks:
+            tasks = manager.get_tasks()
+            indice = sg.popup_get_text("Índice da tarefa para remover:")
+            manager.remove_task(indice)
+            manager.save_tasks()
+            sg.popup("Tarefa removida com sucesso!")
+        else:
+            sg.popup("Não há tarefas para remover.")
+
+    if event == "Editar Tarefa":
+        if manager.tasks:
+            tasks = manager.get_tasks()
+            indice = sg.popup_get_text("Índice da tarefa para editar:")
+            manager.edit_task(indice)
+            manager.save_tasks()
+            sg.popup("Tarefa editada com sucesso!")
+        else:
+            sg.popup("Não há tarefas para editar.")
+
+    if event == "Mostrar Tarefas":
+        tasks = manager.get_tasks()
+        sg.popup(tasks)
+
+manager.save_tasks()
+window.close()
