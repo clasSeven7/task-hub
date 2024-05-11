@@ -62,8 +62,24 @@ def pesquisar_tarefas():
 def filtrar_tarefas():
     if manager.tasks:
         filter = sg.popup_get_text(
-            "Digite o status da tarefa que deseja filtrar:")
+            "Digite o status(pendente, em andamento, concluída) da tarefa que deseja filtrar:")
         tasks = manager.filter_task(filter)
+        sg.popup_scrolled(tasks, title="Tarefas")
+    else:
+        sg.popup("Não há tarefas para filtrar.")
+
+
+def prioridade_tarefa(priority):
+    if manager.tasks:
+        tasks = manager.priority_task(priority)
+        sg.popup_scrolled(tasks, title="Tarefas")
+    else:
+        sg.popup("Não há tarefas para filtrar.")
+
+
+def status_tarefa(status):
+    if manager.tasks:
+        tasks = manager.status_task(status)
         sg.popup_scrolled(tasks, title="Tarefas")
     else:
         sg.popup("Não há tarefas para filtrar.")

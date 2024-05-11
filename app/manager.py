@@ -156,3 +156,46 @@ class Manager:
             return tasks_string
         else:
             return "Não há tarefas cadastradas."
+
+    def clear_tasks(self):
+        while not self.tasks.is_empty():
+            self.tasks.dequeue()
+
+        self.save_tasks()
+        print("Tarefas apagadas com sucesso.")
+
+    def priority_task(self, priority):
+        if not self.tasks.is_empty():
+            temp_queue = Queue()
+            tasks_string = "\nTarefas filtradas por prioridade:\n"
+            current_index = 0
+
+            while not self.tasks.is_empty():
+                task = self.tasks.dequeue()
+                if priority == task.priority:
+                    tasks_string += f"{current_index}. {task.description} - {task.priority} - {task.status}\n"
+                    current_index += 1
+                temp_queue.enqueue(task)
+
+            while not temp_queue.is_empty():
+                self.tasks.enqueue(temp_queue.dequeue())
+
+        return tasks_string
+
+    def status_task(self, status):
+        if not self.tasks.is_empty():
+            temp_queue = Queue()
+            tasks_string = "\nTarefas filtradas por status:\n"
+            current_index = 0
+
+            while not self.tasks.is_empty():
+                task = self.tasks.dequeue()
+                if status == task.status:
+                    tasks_string += f"{current_index}. {task.description} - {task.priority} - {task.status}\n"
+                    current_index += 1
+                temp_queue.enqueue(task)
+
+            while not temp_queue.is_empty():
+                self.tasks.enqueue(temp_queue.dequeue())
+
+        return tasks_string
