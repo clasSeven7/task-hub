@@ -47,3 +47,23 @@ def mostrar_tarefas():
         sg.popup_scrolled(tasks, title="Tarefas")
     else:
         sg.popup("Não há tarefas para mostrar.")
+
+
+def pesquisar_tarefas():
+    if manager.tasks:
+        search = sg.popup_get_text(
+            "Digite a descrição da tarefa que deseja pesquisar:")
+        tasks = manager.search_task(search)
+        sg.popup_scrolled(tasks, title="Tarefas")
+    else:
+        sg.popup("Não há tarefas para pesquisar.")
+
+
+def filtrar_tarefas():
+    if manager.tasks:
+        filter = sg.popup_get_text(
+            "Digite o status da tarefa que deseja filtrar:")
+        tasks = manager.filter_task(filter)
+        sg.popup_scrolled(tasks, title="Tarefas")
+    else:
+        sg.popup("Não há tarefas para filtrar.")

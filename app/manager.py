@@ -116,3 +116,43 @@ class Manager:
             return tasks_string
         else:
             return "Não há tarefas cadastradas."
+
+    def search_task(self, search):
+        if not self.tasks.is_empty():
+            tasks_string = "\nTarefas encontradas:\n"
+            temp_queue = Queue()
+            current_index = 0
+
+            while not self.tasks.is_empty():
+                task = self.tasks.dequeue()
+                if search in task.description:
+                    tasks_string += f"{current_index}. {task.description} - {task.priority} - {task.status}\n"
+                    current_index += 1
+                temp_queue.enqueue(task)
+
+            while not temp_queue.is_empty():
+                self.tasks.enqueue(temp_queue.dequeue())
+
+            return tasks_string
+        else:
+            return "Não há tarefas cadastradas."
+
+    def filter_task(self, filter):
+        if not self.tasks.is_empty():
+            tasks_string = "\nTarefas filtradas:\n"
+            temp_queue = Queue()
+            current_index = 0
+
+            while not self.tasks.is_empty():
+                task = self.tasks.dequeue()
+                if filter == task.status:
+                    tasks_string += f"{current_index}. {task.description} - {task.priority} - {task.status}\n"
+                    current_index += 1
+                temp_queue.enqueue(task)
+
+            while not temp_queue.is_empty():
+                self.tasks.enqueue(temp_queue.dequeue())
+
+            return tasks_string
+        else:
+            return "Não há tarefas cadastradas."

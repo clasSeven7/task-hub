@@ -1,7 +1,8 @@
 import PySimpleGUI as sg
 
 from components.templetes import (adicionar_tarefa, editar_tarefa,
-                                  mostrar_tarefas, remover_tarefa)
+                                  filtrar_tarefas, mostrar_tarefas,
+                                  pesquisar_tarefas, remover_tarefa)
 
 sg.theme('reddit')
 
@@ -11,6 +12,8 @@ layout = [
     [sg.Button("Remover Tarefa")],
     [sg.Button("Editar Tarefa")],
     [sg.Button("Mostrar Tarefas")],
+    [sg.Button("Pesquisar Tarefas")],
+    [sg.Button("Filtrar Tarefas")],
     [sg.Button("Sair")]
 ]
 
@@ -39,3 +42,9 @@ while True:
 
     if event == "Mostrar Tarefas":
         mostrar_tarefas()
+
+    if event == "Pesquisar Tarefas":
+        pesquisar_tarefas()
+
+    if event == "Filtrar Tarefas":
+        filtrar_tarefas()
