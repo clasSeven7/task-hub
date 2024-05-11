@@ -22,25 +22,41 @@
   <img src=".github/preview.png" width="100%"/>
 </div>
 
-# Projeto
+# 💻Projeto
 
 Nosso projeto oferece um **Sistema de Gerenciamento de Tarefas flexível**, permitindo aos usuários escolher entre diferentes estruturas de dados. A interface intuitiva facilita o cadastro, organização, priorização e acompanhamento de tarefas de forma eficiente.
 
-## Estruturas de Dados
+# 🚀Tecnologias
+
+- **Python**
+- **PySimpleGUI**
+
+# 📦Estruturas de Dados
 
 - **Fila**: As tarefas são gerenciadas em uma estrutura de fila, onde a primeira tarefa adicionada é a primeira tarefa a ser realizada.
 - **Pilha**: As tarefas são gerenciadas em uma estrutura de pilha, onde a última tarefa adicionada é a primeira tarefa a ser realizada.
 - **Lista Encadeada**: As tarefas são gerenciadas em uma estrutura de lista encadeada, onde cada tarefa possui um ponteiro para a próxima tarefa.
 
-## Como usar
+## 📌Como usar
 
 1. Clone o repositório
 2. Instale as dependências
+
+```bash
+pip install -r requirements.txt
+```
+
 3. Execute o aplicativo
+
+```bash
+python main.py
+```
+
 4. Adicione suas tarefas e escolha a estrutura de dados desejada
+
 5. Comece a gerenciar suas tarefas de forma eficiente!
 
-## Contribuição
+## 🔗Contribuição
 
 Contribuições são sempre bem-vindas! Se você deseja contribuir com nosso projeto, siga as etapas abaixo:
 
