@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 
+
 from components.templetes import (adicionar_tarefa, editar_tarefa,
                                   filtrar_tarefas, mostrar_tarefas,
                                   pesquisar_tarefas, prioridade_tarefa,

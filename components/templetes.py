@@ -12,8 +12,6 @@ def adicionar_tarefa():
     manager.add_task(description, priority, status)
     manager.save_tasks()
 
-    sg.popup("Tarefa adicionada com sucesso!")
-
 
 def remover_tarefa():
     if manager.tasks:
