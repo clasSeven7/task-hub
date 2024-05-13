@@ -1,4 +1,5 @@
 import json
+import PySimpleGUI as sg
 
 from .queue import Queue
 from .task_manager import Task
@@ -39,9 +40,18 @@ class Manager:
             json.dump(data_json, file)
 
     def add_task(self, description, priority, status):
-        new_task = Task(description, priority, status)
-        self.tasks.enqueue(new_task)
-        self.save_tasks()
+        # Verificar se os campos estão vazios
+        if not description or not priority or not status:
+            # Se algum campo estiver vazio, perguntar ao usuário se deseja cancelar a adição da tarefa
+            if sg.popup_yes_no("Um ou mais campos estão vazios. Deseja cancelar a adição da tarefa?") == "Yes":
+                print("Adição de tarefa cancelada.")
+                return
+        else:
+            # Se todos os campos estiverem preenchidos, criar a nova tarefa
+            new_task = Task(description, priority, status)
+            self.tasks.enqueue(new_task)
+            self.save_tasks()
+            sg.popup("Tarefa adicionada com sucesso.")
 
     def remove_task(self, indice):
         try:
