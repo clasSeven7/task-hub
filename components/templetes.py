@@ -26,7 +26,7 @@ def remover_tarefa():
 
 def editar_tarefa():
     if manager.tasks:
-        indice = sg.popup_get_text("Índice da tarefa para editar:")
+        indice = int(sg.popup_get_text("Índice da tarefa para editar:"))
         description = sg.popup_get_text("Descrição da tarefa:")
         priority = sg.popup_get_text("Prioridade (alta, média, baixa):")
         status = sg.popup_get_text(

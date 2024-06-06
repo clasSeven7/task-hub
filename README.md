@@ -22,16 +22,27 @@
   <img src=".github/preview.png" width="100%"/>
 </div>
 
-# 💻Projeto
+## 💻Projeto
 
 Nosso projeto oferece um **Sistema de Gerenciamento de Tarefas flexível**, permitindo aos usuários escolher entre diferentes estruturas de dados. A interface intuitiva facilita o cadastro, organização, priorização e acompanhamento de tarefas de forma eficiente.
 
-# 🚀Tecnologias
+## 🚀Ferramentas Utilizadas
 
-- **Python**
-- **PySimpleGUI**
+- **Ambiente de Desenvolvimento:** Visual Studio Code
+- **Linguagem de Programação:** Python (backend)
+- **Ferramentas de Controle de Versão:** Git e GitHub
+- **Ferramentas de Gerenciamento de Projetos:** Trello
+- **Persistência de dados (BD):** JSON
+- **Biblioteca do front-end:** PySimpleGUI (janelas)
 
-# 📦Estruturas de Dados
+## 📚Funcionalidades
+
+- **Planejamento:** Definição dos requisitos e elaboração do backlog.
+- **Design:** Criação dos Wireframes e definição da arquitetura do sistema.
+- **Implementação:** Desenvolvimento incremental das funcionalidades.
+- **Testes:** Validação das funcionalidades através de testes unitários e de integração.
+
+## 📦Estruturas de Dados
 
 - **Fila**: As tarefas são gerenciadas em uma estrutura de fila, onde a primeira tarefa adicionada é a primeira tarefa a ser realizada.
 - **Pilha**: As tarefas são gerenciadas em uma estrutura de pilha, onde a última tarefa adicionada é a primeira tarefa a ser realizada.

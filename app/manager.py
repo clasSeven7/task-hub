@@ -1,4 +1,5 @@
 import json
+
 import PySimpleGUI as sg
 
 from .queue import Queue
@@ -78,7 +79,7 @@ class Manager:
         self.save_tasks()
         print("Tarefa removida com sucesso!")
 
-    def edit_task(self, indice):
+    def edit_task(self, indice, description, priority, status):
         if indice < 0 or indice >= self.tasks.size:
             print("Índice inválido.")
             return
@@ -89,9 +90,6 @@ class Manager:
         while not self.tasks.is_empty():
             task = self.tasks.dequeue()
             if indice == 0 and not found:
-                description = input("Nova descrição da tarefa: ")
-                priority = input("Nova prioridade da tarefa: ")
-                status = input("Novo status da tarefa: ")
                 task.description = description
                 task.priority = priority
                 task.status = status
